@@ -11,7 +11,7 @@ function fetchJSONFile(path, callback) {
 }
 
 
-fetchJSONFile('http://prostoshubi.me/cv.json', function (data) {
+fetchJSONFile('cv.json', function (data) {
 
    
     function getListItemsHTML() {
