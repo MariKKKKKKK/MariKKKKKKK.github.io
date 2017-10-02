@@ -10,39 +10,53 @@ function fetchJSONFile(path, callback) {
     httpRequest.send();
 }
 
-// this requests the file and executes a callback with the parsed result once
-//   it is available
+
 fetchJSONFile('http://prostoshubi.me/cv.json', function (data) {
-    // do something with your data
-    var name = document.querySelector('.name');
-    var surname = document.querySelector('.surname');
-    var contactList = document.querySelector('.contacts-list');
-    var educationList = document.querySelector('.education-list');
-    var skillsList = document.querySelector('.skills-list');
-    var contacts = data.basicInfo.contact;
-    var educationData = data.education;
-    var skills = data.skills;
-    var contactListItem = '';
-    var educationListItem = '';
-    var skillsListItem = '';
-    name.innerHTML = data.basicInfo.name;
-    surname.innerHTML = data.basicInfo.surname;
 
-    for (var key in contacts) {
-        let contactItem = contacts[key];
-        console.log(contactItem);
-        contactListItem += '<li>' + contactItem + '</li>';
+   
+    function getListItemsHTML() {
+        var contacts = data.basicInfo.contact;
+        var educationData = data.education;
+        var skills = data.skills;
+        var contactListItem = '';
+        var educationListItem = '';
+        var skillsListItem = '';
+        for (var key in contacts) {
+            let contactItem = contacts[key];
+            console.log(contactItem);
+            contactListItem += '<li>' + contactItem + '</li>';
+        }
+
+        for (var key in educationData) {
+            var educationItem = educationData[key];
+            educationListItem += '<li>' + educationItem + '</li>';
+        }
+
+        for (var ind = 0; ind < skills.length; ind++) {
+            var skillItem = skills[ind];
+            skillsListItem += '<li>' + skillItem + '</li>';
+        }
+
+        return { contactListItem, educationListItem, skillsListItem };
     }
 
-    contactList.insertAdjacentHTML('beforeend', contactListItem);
-    for (var key in educationData) {
-        var educationItem = educationData[key];
-        educationListItem += '<li>' + educationItem + '</li>';
+
+    function insertDataToPage() {
+        var name = document.querySelector('.name');
+        var surname = document.querySelector('.surname');
+        var contactList = document.querySelector('.contacts-list');
+        var educationList = document.querySelector('.education-list');
+        var skillsList = document.querySelector('.skills-list');
+
+        var contactListItem = getListItemsHTML().contactListItem, 
+        educationListItem = getListItemsHTML().educationListItem, 
+        skillsListItem = getListItemsHTML().skillsListItem;
+
+        name.insertAdjacentHTML('beforeend', data.basicInfo.name);
+        surname.insertAdjacentHTML('beforeend', data.basicInfo.surname);
+        contactList.insertAdjacentHTML('beforeend', contactListItem);
+        educationList.insertAdjacentHTML('beforeend', educationListItem);
+        skillsList.insertAdjacentHTML('beforeend', skillsListItem);
     }
-    educationList.insertAdjacentHTML('beforeend', educationListItem);
-    for (var ind = 0; ind < skills.length; ind++) {
-        var skillItem = skills[ind];
-        skillsListItem += '<li>' + skillItem + '</li>';
-    }
-    skillsList.insertAdjacentHTML('beforeend', skillsListItem);
+    insertDataToPage();
 });
