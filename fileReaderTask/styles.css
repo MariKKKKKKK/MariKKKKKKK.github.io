@@ -1,0 +1,54 @@
+
+html, body {
+    color: #bbaacc;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+input[type="file"] {
+    display: block;
+    background-color: #bbaacc;
+    padding: 5px;
+    margin: 5px;
+    color: blueviolet;
+}
+.basic-info {
+    margin: 5px;
+    padding: 5px;
+    font-size: 20px;
+}
+.name {
+    margin: 5px;
+    padding: 5px;
+}
+.surname {
+    margin: 5px;
+    padding: 5px;
+}
+.contacts-list, .education-list, .skills-list {
+    list-style-type: none;
+    box-shadow: 0 2px 2px #bbaacc;
+    
+}
+.contacts-list li {
+    margin: 5px;
+    padding: 5px;
+}
+
+.education-list {
+    font-size: 20px;
+    box-shadow: 0 2px 2px #bbaacc;
+}
+.education-list li  {
+    margin: 5px;
+    padding: 5px;
+}
+.skills-list {
+    font-size: 20px;
+    box-shadow: 0 2px 2px #bbaacc;
+}
+.skills-list li {
+    margin: 5px;
+    padding: 5px;
+}

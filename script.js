@@ -13,7 +13,6 @@ function fetchJSONFile(path, callback) {
 
 fetchJSONFile('cv.json', function (data) {
 
-   
     function getListItemsHTML() {
         var contacts = data.basicInfo.contact;
         var educationData = data.education;
